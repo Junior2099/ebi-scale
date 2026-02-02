@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1a365d" />
+  <title>Escala Mensal - EBI</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Painel de configuração">
+      <div class="sidebar-inner">
+        <h2 class="sidebar-title">
+          <span class="icon-people" aria-hidden="true"></span>
+          Cadastro de tias
+        </h2>
+        <p class="sidebar-hint">Adicione os nomes das tias que participarão da escala.</p>
+        <form id="tiaForm" class="form-add-tia" aria-label="Adicionar nova tia">
+          <input id="tiaName" type="text" placeholder="Ex: Maria Silva" required autocomplete="off" />
+          <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+        <ul id="tiasList" class="tias-list" aria-label="Lista de tias cadastradas"></ul>
+        <hr class="sidebar-divider" />
+        <label class="label-month">Escolha o mês da escala</label>
+        <div class="month-picker" aria-describedby="legend-days">
+          <select id="monthSelect" class="select-month" aria-label="Mês">
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
+          <select id="yearSelect" class="select-year" aria-label="Ano"></select>
+        </div>
+        <div id="legend-days" class="legend" role="note">
+          <strong>Horários dos cultos:</strong>
+          <ul>
+            <li>Domingo: 08:00 e 18:00</li>
+            <li>Segunda, Quarta e Sexta: 20:00</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <div class="header-top">
+          <button type="button" class="btn-menu" id="btnMenu" aria-label="Abrir menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+          <h1 class="main-title">Escala Mensal</h1>
+          <div class="actions">
+            <button type="button" id="exportPdf" class="btn btn-export" title="Baixar escala em PDF">
+              <span class="icon-pdf" aria-hidden="true"></span>
+              Baixar PDF
+            </button>
+          </div>
+        </div>
+        <div class="header-bottom">
+          <div id="currentMonthLabel" class="month-label" aria-live="polite"></div>
+        </div>
+      </header>
+
+      <section class="calendar-section" aria-label="Calendário da escala">
+        <p class="calendar-hint">Toque em um horário para escolher quem ficará responsável.</p>
+        <div id="calendar" class="calendar"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="assignModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <h3 id="modalTitle" class="modal-title">Atribuir responsável</h3>
+      <label for="tiaSelect" class="modal-label">Quem ficará neste horário?</label>
+      <select id="tiaSelect" class="modal-select"></select>
+      <div class="modal-actions">
+        <button type="button" id="saveAssign" class="btn btn-primary">Salvar</button>
+        <button type="button" id="clearAssign" class="btn btn-ghost">Limpar</button>
+        <button type="button" id="cancelAssign" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
