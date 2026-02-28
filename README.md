@@ -1,3 +1,4 @@
+https://junior2099.github.io/ebi-scale/
 # Escala Mensal - EBI
 
 Pequena aplicação em HTML/CSS/JavaScript para gerar uma escala mensal com os dias e horários configurados:
